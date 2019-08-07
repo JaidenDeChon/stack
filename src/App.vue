@@ -1,28 +1,65 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang=pug>
+
+  div(id="app")
+    Nav
+    Title
+    newTodo
+    List
+    Footer
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld,
-  },
-};
+  import Nav from './components/Nav.vue';
+  import Title from './components/Title.vue';
+  import newTodo from './components/newTodo.vue';
+  import List from './components/List.vue';
+  import Footer from './components/Footer.vue'
+
+  export default {
+    name: 'app',
+    components: {
+      Nav,
+      Title,
+      newTodo,
+      List,
+      Footer
+    },
+  };
+
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
+
+  html, body
+
+    margin: 0
+    padding: 0
+
+  #app
+
+    font-family: 'Open Sans', 'Chonburi', cursive, sans-serif
+
+    // position: relative
+
+    width: 100%
+
+    margin: 0 auto
+    padding: 0
+
+    *
+
+      box-sizing: border-box
+
+    .fade
+
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1)
+
+    .shadow
+
+      &:hover, &:focus
+
+        box-shadow: 0 0 20px rgba(0,0,0,0.15), 0 0 20px rgba(0,0,0,0.15)
+
 </style>
