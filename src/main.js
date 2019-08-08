@@ -2,6 +2,13 @@ import Vue from 'vue';
 import App from './App.vue';
 import store from './store';
 import './registerServiceWorker';
+import persistentState from 'vue-persistent-state'; 
+
+const initialState = {
+  token: ''  // will get value from localStorage if found there
+};
+
+Vue.use(persistentState, initialState);
 
 Vue.config.productionTip = false;
 
