@@ -1,3 +1,8 @@
+<!-- To Do -->
+<!-- Auto-refresh cards list every time new entry is added -->
+<!-- (scaffolded) Add support for done/not-done indication on cards, stored with to-do entry in localStorage -->
+<!-- (scaffolded) Add support for removing to-do items -->
+
 <template lang=pug>
 
   div(id="app")
@@ -39,7 +44,7 @@
         return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
       }
 
-      // Create localStorage item if there isn't one already
+      // On page load, create localStorage item if there isn't one already
       if (localStorage.getItem('todos') == null) {
         let newList = []
         let newListStringified = JSON.stringify(newList)
