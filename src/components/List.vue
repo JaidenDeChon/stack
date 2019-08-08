@@ -34,19 +34,57 @@
 
 <script>
 
-	// global.jQuery = require('jquery')
-	// var $ = global.jQuery
-	// window.$ = $
-	// import $ from "jQuery";
-
 	export default {
 
 		name: 'List',
 		mounted: function () {
 
-			// window.addEventListener('storage', function(event){
-			// 	fillList()
-			// });
+			let cardCloseButton = $('.fa-times')
+			let cardToggleButton = $('.fa-check')
+
+			// When close button is checked
+				
+				// Define this card's index
+
+				// get localStorage
+				// convert todo to object
+
+				// for item in todos
+
+					// if item index == cards index
+
+						// delete this item
+
+				// convert object back into string
+				// set localStorage
+
+				// rerun fillList()
+
+			// ___________________________________________________________________
+
+			// When toggle button is checked
+
+				// Define this card's index
+
+				// get todo from localStorage
+				// convert todo to object
+
+				// for item in todos
+
+					// if item index == cards index
+
+						// if item[1] == "active"
+
+							// item[1] == "inactive"
+
+						// if item[1] == "inactive"
+
+							// item[1] == "active"
+
+				// convert object back into string
+				// set localStorage
+
+				// rerun fillList()
 
 			// Populate cards-container with entries from LocalStorage
 			function fillList() {
@@ -57,14 +95,12 @@
 				// Define parent for housing cards
 				let cardsParent = $(".cards-container")
 
-				// Get cart contents form localStorage, convert to object
+				// Get todo contents form localStorage, convert to object
 				let todos = localStorage.getItem("todos")
 				let todosObject = JSON.parse(todos)
 
 				// Define function for creating cards
 				function makeCards (content, status, toDoIndex) {
-
-					console.log("makeCards fired")
 
 					// Define card attributes
 					let cardContent = content 
@@ -78,8 +114,8 @@
 					// Create card element
 					let card = document.createElement("div")
 					card.classList.add("card", "fade", "shadow")
-					if (status != "active") {
-						card.classList.add("done")
+					if (status != "active") {            // if status variable is not 'active', 
+						card.classList.add("done")       // apply class "done" to card to change styling
 					}
 					li.append(card)
 
@@ -89,14 +125,18 @@
 					p.appendChild(pContent)
 					card.append(p)
 
+					// Create and append card's close-button
 					let times = document.createElement("i")
 					times.classList.add("fas", "fa-times", "fade", "shadow")
 					card.append(times)
 
+					// Create and append card's check-button
 					let check = document.createElement("i")
 					check.classList.add("fas", "fa-check", "fade", "shadow")
 					card.append(check)
 
+					// Set index so that "status" (active/inactive) variable can be changed
+					// ... and saved so it persists between page reloads
 					card.setAttribute('data-index', toDoIndex)
 
 				}
