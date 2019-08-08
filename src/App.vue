@@ -11,6 +11,10 @@
 
 <script>
 
+  global.jQuery = require('jquery')
+  var $ = global.jQuery
+  window.$ = $
+
   import Nav from './components/Nav.vue';
   import Title from './components/Title.vue';
   import newTodo from './components/newTodo.vue';
@@ -19,6 +23,7 @@
 
   export default {
     name: 'app',
+
     components: {
       Nav,
       Title,
@@ -26,6 +31,23 @@
       List,
       Footer
     },
+
+    mounted: function() {
+
+      // Function for finding types of objects
+      function typeOf(obj) {
+        return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
+      }
+
+      // Create localStorage item if there isn't one already
+      if (localStorage.getItem('todos') == null) {
+        let newList = []
+        let newListStringified = JSON.stringify(newList)
+        localStorage.setItem('todos', newListStringified)
+      }
+
+    }
+
   };
 
 </script>
