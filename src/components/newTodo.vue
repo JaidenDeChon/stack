@@ -4,8 +4,8 @@
 
 		div(class="inputs")
 
-			input(class="fade" type="text" placeholder="Enter a new task...")
-			button(class="shadow fade")
+			input(v-model="newToDo" v-on:keyup.enter="appendToStorage(newToDo)" class="fade" id="input" type="text" placeholder="Enter a new task...")
+			button(@click="appendToStorage(newToDo)" class="shadow fade")
 				i(class="fas fa-plus")
 
 </template>
@@ -13,7 +13,54 @@
 <script>
 
 	export default {
-		name: 'newTodo'
+
+		name: 'newTodo',
+
+		data: function() {
+			return {
+				newToDo: ''
+			}
+		},
+
+		methods: {
+			appendToStorage(newEntry) {
+
+				let todos = localStorage.getItem("todos");
+				let todosObject = JSON.parse(todos);
+
+				todosObject.push([newEntry, "active"])
+
+				let newList = JSON.stringify(todosObject)
+				localStorage.setItem("todos", newList)
+			}
+
+		},
+
+		mounted: function() {
+
+			let field = $('input.fade')
+			let submitButton = $('button.shadow')
+
+			// Define function to clear input field
+			function clearField() {
+				document.getElementById('input').value = ''
+			}
+
+			// Call clearField function on submit click
+			submitButton.click(function() {
+				clearField()
+			})
+
+			// call clearField function on enter-press inside input
+			document.getElementById('input').onkeypress = function(e){
+				if (!e) e = window.event;
+				if (e.keyCode == '13'){
+					clearField()
+				return false;
+				}
+			}
+
+		}
 	}
 
 </script>
@@ -82,6 +129,8 @@
 						color: #e8e8e8
 
 			button
+
+				cursor: pointer
 
 				// Move to desktop
 				&:hover
