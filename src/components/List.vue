@@ -34,9 +34,97 @@
 
 <script>
 
+	// global.jQuery = require('jquery')
+	// var $ = global.jQuery
+	// window.$ = $
+	// import $ from "jQuery";
+
 	export default {
+
 		name: 'List',
-		mounted () {}
+		mounted: function () {
+
+			// window.addEventListener('storage', function(event){
+			// 	fillList()
+			// });
+
+			// Populate cards-container with entries from LocalStorage
+			function fillList() {
+
+				// Find and remove all current cards
+				$(".list-item").remove();
+
+				// Define parent for housing cards
+				let cardsParent = $(".cards-container")
+
+				// Get cart contents form localStorage, convert to object
+				let todos = localStorage.getItem("todos")
+				let todosObject = JSON.parse(todos)
+
+				// Define function for creating cards
+				function makeCards (content, status, toDoIndex) {
+
+					console.log("makeCards fired")
+
+					// Define card attributes
+					let cardContent = content 
+					let cardStatus = status
+
+					// Create li to house card, append to parent
+					let li = document.createElement("li")
+					li.classList.add("list-item")
+					cardsParent.append(li)
+
+					// Create card element
+					let card = document.createElement("div")
+					card.classList.add("card", "fade", "shadow")
+					if (status != "active") {
+						card.classList.add("done")
+					}
+					li.append(card)
+
+					// Create p element for content, append to card
+					let p = document.createElement("p")
+					let pContent = document.createTextNode(content)
+					p.appendChild(pContent)
+					card.append(p)
+
+					let times = document.createElement("i")
+					times.classList.add("fas", "fa-times", "fade", "shadow")
+					card.append(times)
+
+					let check = document.createElement("i")
+					check.classList.add("fas", "fa-check", "fade", "shadow")
+					card.append(check)
+
+					card.setAttribute('data-index', toDoIndex)
+
+				}
+
+				if (todos) {
+
+					// // For todo in todos...
+					for (var index = 0; index < todosObject.length; index++) {
+
+						console.log(index)
+
+						// Create variable out of todo
+						let entry = todosObject[index]
+
+						let content = entry[0]
+						let status = entry[1]
+						let toDoIndex = index
+
+						makeCards(content, status, toDoIndex)
+
+					}
+
+				}
+
+			}
+			fillList()
+
+		}
 	}
 </script>
 
@@ -75,7 +163,7 @@
 
 		.card
 
-			padding: 20px 60px 20px 40px
+			padding: 20px 80px 20px 40px
 			margin:  20px 0
 
 			color: #e8e8e8
