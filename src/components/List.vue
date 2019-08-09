@@ -86,14 +86,15 @@
 
 	.list-container
 
-		// border: solid #fff
+		// border: solid orange
 		box-sizing: border-box
 
 		margin: 0
 
 		padding: 0
 
-		min-height: 75vh
+		// 100vh - combined heights of Title(80px), newToDo(50px), and Footer(80px)
+		min-height: calc(100vh - 210px)
 
 		.cards-container
 
@@ -126,6 +127,7 @@
 
 			color: #e8e8e8
 			text-align: left
+			font-size: 15px
 
 			background-color: #42B983
 			border-radius: 20px
@@ -133,7 +135,9 @@
 
 			position: relative
 
-			overflow: none
+			overflow-wrap: break-word
+			word-wrap: break-word
+			hyphens: auto
 
 			display: flex
 			align-items: center

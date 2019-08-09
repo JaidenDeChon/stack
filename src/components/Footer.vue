@@ -28,7 +28,7 @@
 	.footer-container
 
 		width: 100%
-		height: 10vh
+		height: 80px
 
 		margin: 0
 

@@ -24,7 +24,9 @@ export default {
 		box-sizing: border-box
 
 		width: 100%
-		height: 10vh
+		height: 80px
+		min-height: 80px
+		max-height: 80px
 
 		.title-flex
 
@@ -39,7 +41,7 @@ export default {
 				color: #42B983
 				font-family: 'Chonburi'
 				text-align: right
-				line-height: 10vh
+				line-height: 80px
 
 				height: 10vh
 				width: 100%
