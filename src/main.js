@@ -3,9 +3,10 @@ import App from './App.vue';
 import store from './store';
 import './registerServiceWorker';
 import persistentState from 'vue-persistent-state'; 
+// var $store = require('store')
 
 const initialState = {
-  token: ''  // will get value from localStorage if found there
+  todos: []  // will get value from localStorage if found there
 };
 
 Vue.use(persistentState, initialState);
