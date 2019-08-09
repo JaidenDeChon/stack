@@ -6,10 +6,11 @@
 <template lang=pug>
 
   div(id="app")
+
     Nav
     Title
     newTodo
-    List
+    List()
     Footer
 
 </template>
@@ -35,22 +36,6 @@
       newTodo,
       List,
       Footer
-    },
-
-    mounted: function() {
-
-      // Function for finding types of objects
-      function typeOf(obj) {
-        return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
-      }
-
-      // On page load, create localStorage item if there isn't one already
-      if (localStorage.getItem('todos') == null) {
-        let newList = []
-        let newListStringified = JSON.stringify(newList)
-        localStorage.setItem('todos', newListStringified)
-      }
-
     }
 
   };
@@ -87,6 +72,6 @@
 
       &:hover, &:focus
 
-        box-shadow: 0 0 20px rgba(0,0,0,0.15), 0 0 20px rgba(0,0,0,0.15)
+        box-shadow: 0 0 20px rgba(0,0,0,0.25), 0 0 20px rgba(0,0,0,0.25)
 
 </style>
