@@ -4,7 +4,7 @@
 
 		div(class="inputs")
 
-			input(v-model="newToDo" v-on:keyup.enter="todos.push([newToDo, 'active'])" class="fade" id="input" type="text" placeholder="Enter a new task...")
+			input(required v-model="newToDo" v-on:keyup.enter="todos.push([newToDo, 'active'])" class="fade" id="input" type="text" placeholder="Enter a new task...")
 			button(@click="todos.push([newToDo, 'active'])" class="shadow fade")
 				i(class="fas fa-plus")
 
@@ -65,7 +65,7 @@
 		display: flex
 		align-items: center
 
-		height: 5vh
+		height: 50px
 
 		.inputs
 
