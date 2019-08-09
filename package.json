@@ -12,6 +12,7 @@
     "jquery": "^3.4.1",
     "register-service-worker": "^1.6.2",
     "slipjs": "^2.1.1",
+    "store": "^2.0.12",
     "vue": "^2.6.10",
     "vue-persistent-state": "^0.2.1",
     "vuex": "^3.0.1"
