@@ -4,8 +4,8 @@
 
 		div(class="inputs")
 
-			input(v-model="newToDo" v-on:keyup.enter="appendToStorage(newToDo)" class="fade" id="input" type="text" placeholder="Enter a new task...")
-			button(@click="appendToStorage(newToDo)" class="shadow fade")
+			input(v-model="newToDo" v-on:keyup.enter="todos.push([newToDo, 'active'])" class="fade" id="input" type="text" placeholder="Enter a new task...")
+			button(@click="todos.push([newToDo, 'active'])" class="shadow fade")
 				i(class="fas fa-plus")
 
 </template>
@@ -20,20 +20,6 @@
 			return {
 				newToDo: ''
 			}
-		},
-
-		methods: {
-			appendToStorage(newEntry) {
-
-				let todos = localStorage.getItem("todos");
-				let todosObject = JSON.parse(todos);
-
-				todosObject.push([newEntry, "active"])
-
-				let newList = JSON.stringify(todosObject)
-				localStorage.setItem("todos", newList)
-			}
-
 		},
 
 		mounted: function() {
@@ -59,7 +45,6 @@
 				return false;
 				}
 			}
-
 		}
 	}
 
