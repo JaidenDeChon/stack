@@ -4,8 +4,8 @@
 
 		div(class="inputs")
 
-			input(required v-model="newToDo" v-on:keyup.enter="todos.push([newToDo, 'active'])" class="fade" id="input" type="text" placeholder="Enter a new task...")
-			button(@click="todos.push([newToDo, 'active'])" class="shadow fade")
+			input(required v-model="txtInput" v-on:keyup.enter="addToTodos" class="fade" id="input" type="text" placeholder="Enter a new task...")
+			button(@click="addToTodos" class="shadow fade")
 				i(class="fas fa-plus")
 
 </template>
@@ -18,34 +18,37 @@
 
 		data: function() {
 			return {
-				newToDo: ''
+				txtInput: ''
 			}
 		},
 
-		mounted: function() {
+		methods: {
 
-			let field = $('input.fade')
-			let submitButton = $('button.shadow')
+			// Add the input content to the [todos] object
+			addToTodos: function(e) {
 
-			// Define function to clear input field
-			function clearField() {
-				document.getElementById('input').value = ''
-			}
+				// Prevent form submit
+				e.preventDefault();
 
-			// Call clearField function on submit click
-			submitButton.click(function() {
-				clearField()
-			})
+				// If the field contains something
+				if (this.txtInput != '') {
 
-			// call clearField function on enter-press inside input
-			document.getElementById('input').onkeypress = function(e){
-				if (!e) e = window.event;
-				if (e.keyCode == '13'){
-					clearField()
-				return false;
-				}
+					// Define content variable to pass to [todos]
+					let todoContent = this.txtInput;
+
+					// Push content, completion status (initially false) of todo to [todos] 
+					this.todos.push({
+						"content" : todoContent, 
+						"completedStatus" : false, 
+					});
+
+					// Clear the field of any text
+					this.txtInput = '';
+				};
 			}
 		}
+
+
 	}
 
 </script>
