@@ -10,72 +10,73 @@
 
 		ul(class="cards-container")
 
-			li(v-for="todo in todos" class="list-item")
-				div(class="card shadow" :class="{ done: todo[1] == 'inactive' }")
-					p {{ todo[0] }}
-					i(@click="remove" class="fas fa-times shadow")
-					i(@click="toggle" class="fas fa-check shadow")
-
-			//- li(class="list-item")
-			//- 	div(class="card fade shadow")
-			//- 		p This is another item, but it's a little longer. The text should just wrap around and stretch the card. 
-			//- 		i(class="fas fa-times fade shadow")
-			//- 		i(class="fas fa-check fade shadow")
-
-			//- li(class="list-item")
-			//- 	div(class="card fade shadow done")
-			//- 		p This task is finished, which is why it looks like this. 
-			//- 		i(class="fas fa-times fade shadow")
-			//- 		i(class="fas fa-check fade shadow")
-
-			//- li(class="list-item")
-			//- 	div(v-on:click="test" class="card fade shadow")
-			//- 		p Here's another task that still has yet to be done. Maybe it'll get done soon?
-			//- 		i(class="fas fa-times fade shadow")
-			//- 		i(class="fas fa-check fade shadow")
+			li(v-for="(todo, index) in todos" class="list-item")
+				div(
+					class="card shadow" 
+					:class="{ done: todo.completedStatus == true }"
+				)
+					p {{ todo.content }}
+					i(@click="remove(index)" class="fas fa-times shadow")
+					i(@click="toggle(index)" class="fas fa-check shadow")
 
 </template>
 
 <script>
-
-// var fillList = require('../assets/js/fillList.js')
-// var handleCardDelete = require('../assets/js/handleCardDelete.js')
-// var handleCardToggle = require('../assets/js/handleCardToggle.js')
 
 	export default {
 
 		name: 'List',
 
 		methods: {
-			remove: function(theElementClicked) {
-				let thisElement = theElementClicked.target.parentNode
-				let thisCardsContent = theElementClicked.target.parentElement.children[0].innerHTML
 
-				for (let todo in this.todos) {
-					let currentTodo = this.todos[todo]
-					if (thisCardsContent == currentTodo[0]) {
-						this.todos.splice(currentTodo[0], 1)
-					}
-				}
+			remove: function(index) {
+				
+				// Delete the todo at the index (passed by template)
+				this.$delete(this.todos, index)
 			},
-			toggle: function(theElementClicked) {
-				let thisElement = theElementClicked.target.parentNode
-				let thisCardsContent = theElementClicked.target.parentElement.children[0].innerHTML
 
-				for (let i in this.todos) {
-					let currentTodo = this.todos[i]
-					if (thisCardsContent == currentTodo[0]) {
-						let newStatus = "inactive"
-						currentTodo[1] = newStatus
-						let newTodo = currentTodo
-						this.todos[i] = newTodo
-					}
+			toggle: function(index) {
+
+				// Get completion status
+				let status = this.todos[index].completedStatus
+
+				// If true, then false. If false, then true
+				if (status === false) {
+					this.todos[index].completedStatus = true
+				} else {
+					this.todos[index].completedStatus = false
 				}
 
-				let newtodolist = this.todos
-				this.todos = ''
-				this.todos = newtodolist
-			}
+			},
+
+			// remove: function(theElementClicked) {
+			// 	let thisElement = theElementClicked.target.parentNode
+			// 	let thisCardsContent = theElementClicked.target.parentElement.children[0].innerHTML
+			// 	for (let todo in this.todos) {
+			// 		let currentTodo = this.todos[todo]
+			// 		if (thisCardsContent == currentTodo[0]) {
+			// 			this.todos.splice(currentTodo[0], 1)
+			// 		}
+			// 	}
+			// },
+
+			// toggle: function(theElementClicked) {
+			// 	let thisElement = theElementClicked.target.parentNode
+			// 	let thisCardsContent = theElementClicked.target.parentElement.children[0].innerHTML
+			// 	for (let i in this.todos) {
+					// let currentTodo = this.todos[i]
+					// if (thisCardsContent == currentTodo[0]) {
+					// 	let newStatus = "inactive"
+					// 	currentTodo[1] = newStatus
+					// 	let newTodo = currentTodo
+					// 	this.todos[i] = newTodo
+					// }
+			// }
+
+			// 	let newtodolist = this.todos
+			// 	this.todos = ''
+			// 	this.todos = newtodolist
+			// }
 		},
 
 		mounted: function () {}
