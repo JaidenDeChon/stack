@@ -60,18 +60,50 @@
     margin: 0 auto
     padding: 0
 
+    .global-width-class
+
+      width: 85%
+      max-width: 850px
+      margin: 0 auto
+
     *
 
       box-sizing: border-box
 
     .fade
 
-      transition: all 0.3s cubic-bezier(.25,.8,.25,1)
+      transition: all 0.15s cubic-bezier(.25,.8,.25,1)
 
     .shadow
 
-      &:hover, &:focus
+  // smartphones, portrait iPhone, portrait 480x320 phones (Android)
+  // @media (min-width: 280px)
 
-        box-shadow: 0 0 20px rgba(0,0,0,0.25), 0 0 20px rgba(0,0,0,0.25)
+  // Landscape iPhones
+  // @media (min-width: 568px)
+
+  // Portrait iPad
+  // @media (min-width: 750px)
+
+  // Landscape standard tablets, lo-res laptops and desktops
+  // @media (min-width: 801px)
+
+  // For laptops and desktops, and landscape big tablets
+  @media (min-width: 1000px)
+    #app
+      .shadow
+        &:hover
+          box-shadow: 0 0 20px rgba(0,0,0,0.25), 0 0 20px rgba(0,0,0,0.25)
+        // &:focus
+        //   box-shadow: 0 0 20px rgba(0,0,0,0.25), 0 0 20px rgba(0,0,0,0.25)
+
+  // For strange new 1440p laptops
+  // @media (min-width: 1440px)
+
+  // Full HD laptops & desktops, big tablets
+  // @media (min-width: 1920px)
+
+  // 4K screens
+  // @media (min-width: 1400px)
 
 </style>
