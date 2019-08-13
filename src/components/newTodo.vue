@@ -2,7 +2,7 @@
 
 	div(class="new-todo-container")
 
-		div(class="inputs")
+		div(class="inputs global-width-class")
 
 			input(required v-model="txtInput" v-on:keyup.enter="addToTodos" class="fade" id="input" type="text" placeholder="Enter a new task...")
 			button(@click="addToTodos" class="shadow fade")
@@ -72,9 +72,6 @@
 
 		.inputs
 
-			width: 85%
-			margin: 0 auto
-
 			display: flex
 			justify-content: space-between
 
@@ -120,10 +117,43 @@
 
 				cursor: pointer
 
-				// Move to desktop
-				&:hover
+				// box-shadow: 0 0 10px #1e573d
 
-					background: #42B983
-					color: #e8e8e8
+				// Move to desktop
+				&:active
+					box-shadow: inset 0 0 10px #1e573d
+					color: #42B983
+
+	// smartphones, portrait iPhone, portrait 480x320 phones (Android)
+	// @media (min-width: 280px)
+
+	// Landscape iPhones
+	// @media (min-width: 568px)
+
+	// Portrait iPad
+	@media (min-width: 750px)
+		.new-todo-container
+			.inputs
+				input
+					width: 90%
+				button
+					&:hover
+						background: #42B983
+						color: #e8e8e8
+
+	// Landscape standard tablets, lo-res laptops and desktops
+	// @media (min-width: 801px)
+
+	// For laptops and desktops, and landscape big tablets
+	// @media (min-width: 1000px)
+
+	// For strange new 1440p laptops
+	// @media (min-width: 1440px)
+
+	// Full HD laptops & desktops, big tablets
+	// @media (min-width: 1920px)
+
+	// 4K screens
+	// @media (min-width: 1400px)
 
 </style>
