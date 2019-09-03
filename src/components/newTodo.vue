@@ -4,7 +4,14 @@
 
 		div(class="inputs global-width-class")
 
-			input(required v-model="txtInput" v-on:keyup.enter="addToTodos" class="fade" id="input" type="text" placeholder="Enter a new task...")
+			input(
+				v-model="txtInput"
+				v-on:keyup.enter="addToTodos"
+				class="fade" id="input"
+				type="text"
+				placeholder="Enter a new task..."
+			)
+
 			button(@click="addToTodos" class="shadow fade")
 				i(class="fas fa-plus")
 
@@ -12,148 +19,146 @@
 
 <script>
 
-	export default {
+export default {
 
-		name: 'newTodo',
+  name: 'newTodo',
 
-		data: function() {
-			return {
-				txtInput: ''
-			}
-		},
+  data() {
+    return {
+      txtInput: '',
+    };
+  },
 
-		methods: {
+  methods: {
 
-			// Add the input content to the [todos] object
-			addToTodos: function(e) {
+    // Add the input content to the [todos] object
+    addToTodos(e) {
+      // Prevent form submit
+      e.preventDefault();
 
-				// Prevent form submit
-				e.preventDefault();
+      // If the field contains something
+      if (this.txtInput != '') {
+        // Define content variable to pass to [todos]
+        const todoContent = this.txtInput;
 
-				// If the field contains something
-				if (this.txtInput != '') {
+        // Push content, completion status (initially false) of todo to [todos]
+        this.todos.push({
+          content: todoContent,
+          completedStatus: false,
+        });
 
-					// Define content variable to pass to [todos]
-					let todoContent = this.txtInput;
-
-					// Push content, completion status (initially false) of todo to [todos] 
-					this.todos.push({
-						"content" : todoContent, 
-						"completedStatus" : false, 
-					});
-
-					// Clear the field of any text
-					this.txtInput = '';
-				};
-			}
-		}
+        // Clear the field of any text
+        this.txtInput = '';
+      }
+    },
+  },
 
 
-	}
+};
 
 </script>
 
 <style scoped lang="sass">
 
-	.new-todo-container
+.new-todo-container
 
-		// border: solid red
-		// background: rgba(255, 0, 0, 0.3)
-		box-sizing: border-box
+	// border: solid red
+	// background: rgba(255, 0, 0, 0.3)
+	box-sizing: border-box
 
-		margin: 0
+	margin: 0
 
-		width: 100%
+	width: 100%
+
+	display: flex
+	align-items: center
+
+	height: 50px
+
+	.inputs
 
 		display: flex
-		align-items: center
+		justify-content: space-between
 
-		height: 50px
+		// border: solid blue
 
-		.inputs
+		input, button
 
-			display: flex
-			justify-content: space-between
+			height: 40px
+			min-width: 40px
 
-			// border: solid blue
+			margin: 0
+			padding: 0
 
-			input, button
+			outline: none
+			border: none
+			border-radius: 20px
 
-				height: 40px
-				min-width: 40px
+			background: #e8e8e8
 
-				margin: 0
-				padding: 0
+			color: #888888
 
-				outline: none
-				border: none
-				border-radius: 20px
+		input
 
-				background: #e8e8e8
+			width: calc(85% - 20px)
+			padding-left: 20px
+
+			&::placeholder
 
 				color: #888888
+				font-size: 15px
 
-			input
+			&:focus
 
-				width: calc(85% - 20px)
-				padding-left: 20px
+				box-shadow: 0 0 20px rgba(0,0,0,0.15), 0 0 20px rgba(0,0,0,0.15)
+				background: #42B983
+				color: #e8e8e8
 
 				&::placeholder
 
-					color: #888888
-					font-size: 15px
+					color: #e8e8e8
 
-				&:focus
+		button
 
-					box-shadow: 0 0 20px rgba(0,0,0,0.15), 0 0 20px rgba(0,0,0,0.15)
+			cursor: pointer
+
+			// box-shadow: 0 0 10px #1e573d
+
+			// Move to desktop
+			&:active
+				box-shadow: inset 0 0 10px #1e573d
+				color: #42B983
+
+// smartphones, portrait iPhone, portrait 480x320 phones (Android)
+// @media (min-width: 280px)
+
+// Landscape iPhones
+// @media (min-width: 568px)
+
+// Portrait iPad
+@media (min-width: 750px)
+	.new-todo-container
+		.inputs
+			input
+				width: 90%
+			button
+				&:hover
 					background: #42B983
 					color: #e8e8e8
 
-					&::placeholder
+// Landscape standard tablets, lo-res laptops and desktops
+// @media (min-width: 801px)
 
-						color: #e8e8e8
+// For laptops and desktops, and landscape big tablets
+// @media (min-width: 1000px)
 
-			button
+// For strange new 1440p laptops
+// @media (min-width: 1440px)
 
-				cursor: pointer
+// Full HD laptops & desktops, big tablets
+// @media (min-width: 1920px)
 
-				// box-shadow: 0 0 10px #1e573d
-
-				// Move to desktop
-				&:active
-					box-shadow: inset 0 0 10px #1e573d
-					color: #42B983
-
-	// smartphones, portrait iPhone, portrait 480x320 phones (Android)
-	// @media (min-width: 280px)
-
-	// Landscape iPhones
-	// @media (min-width: 568px)
-
-	// Portrait iPad
-	@media (min-width: 750px)
-		.new-todo-container
-			.inputs
-				input
-					width: 90%
-				button
-					&:hover
-						background: #42B983
-						color: #e8e8e8
-
-	// Landscape standard tablets, lo-res laptops and desktops
-	// @media (min-width: 801px)
-
-	// For laptops and desktops, and landscape big tablets
-	// @media (min-width: 1000px)
-
-	// For strange new 1440p laptops
-	// @media (min-width: 1440px)
-
-	// Full HD laptops & desktops, big tablets
-	// @media (min-width: 1920px)
-
-	// 4K screens
-	// @media (min-width: 1400px)
+// 4K screens
+// @media (min-width: 1400px)
 
 </style>
