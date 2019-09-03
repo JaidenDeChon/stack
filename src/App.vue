@@ -1,92 +1,95 @@
-<!-- To Do -->
-<!-- Auto-refresh cards list every time new entry is added -->
-<!-- (scaffolded) Add support for done/not-done indication on cards, stored with to-do entry in localStorage -->
-<!-- (scaffolded) Add support for removing to-do items -->
 
 <template lang=pug>
 
   div(id="app")
 
-    Nav
+    Navbar
+
+    router-view
+
     Title
     newTodo
-    List()
+    List
     Footer
 
 </template>
 
 <script>
 
-  global.jQuery = require('jquery')
-  var $ = global.jQuery
-  window.$ = $
+import Navbar from './components/navBar.vue';
+import Title from './components/title.vue';
+import newTodo from './components/newTodo.vue';
+import List from './components/list.vue';
+import Footer from './components/footer.vue';
 
-  import Nav from './components/Nav.vue';
-  import Title from './components/Title.vue';
-  import newTodo from './components/newTodo.vue';
-  import List from './components/List.vue';
-  import Footer from './components/Footer.vue'
+global.jQuery = require('jquery');
 
-  export default {
-    name: 'app',
+const $ = global.jQuery;
+window.$ = $;
 
-    components: {
-      Nav,
-      Title,
-      newTodo,
-      List,
-      Footer
-    }
+export default {
+  name: 'app',
 
-  };
+  components: {
+    Navbar,
+    Title,
+    newTodo,
+    List,
+    Footer
+  },
+
+};
 
 </script>
 
 <style lang="sass">
 
-  html, body
+@import './assets/css/hamburgers.css'
 
-    margin: 0
-    padding: 0
+html, body
 
-  #app
+  margin: 0
+  padding: 0
 
-    font-family: 'Open Sans', 'Chonburi', cursive, sans-serif
+body
+  // height: 200vh
+  position: relative
+  padding-bottom: 80px
 
-    // position: relative
+#app
 
-    width: 100%
+  font-family: 'Open Sans', 'Chonburi', cursive, sans-serif
 
+  width: 100%
+
+  margin: 0 auto
+  padding: 0
+
+  .global-width-class
+
+    width: 85%
+    max-width: 850px
     margin: 0 auto
-    padding: 0
 
-    .global-width-class
+  *
 
-      width: 85%
-      max-width: 850px
-      margin: 0 auto
+    box-sizing: border-box
 
-    *
+  .fade
 
-      box-sizing: border-box
+    transition: all 0.15s cubic-bezier(.25,.8,.25,1)
 
-    .fade
+// smartphones, portrait iPhone, portrait 480x320 phones (Android)
+// @media (min-width: 280px)
 
-      transition: all 0.15s cubic-bezier(.25,.8,.25,1)
+// Landscape iPhones
+// @media (min-width: 568px)
 
-    .shadow
+// Portrait iPad
+// @media (min-width: 750px)
 
-  // smartphones, portrait iPhone, portrait 480x320 phones (Android)
-  // @media (min-width: 280px)
-
-  // Landscape iPhones
-  // @media (min-width: 568px)
-
-  // Portrait iPad
-  // @media (min-width: 750px)
-
-  // Landscape standard tablets, lo-res laptops and desktops
-  // @media (min-width: 801px)
+// Landscape standard tablets, lo-res laptops and desktops
+// @media (min-width: 801px)
 
   // For laptops and desktops, and landscape big tablets
   @media (min-width: 1000px)
@@ -94,16 +97,22 @@
       .shadow
         &:hover
           box-shadow: 0 0 20px rgba(0,0,0,0.25), 0 0 20px rgba(0,0,0,0.25)
-        // &:focus
-        //   box-shadow: 0 0 20px rgba(0,0,0,0.25), 0 0 20px rgba(0,0,0,0.25)
 
-  // For strange new 1440p laptops
-  // @media (min-width: 1440px)
+// For strange new 1440p laptops
+@media (min-width: 1440px)
+  body
+    padding-left: 350px !important
+    max-width: calc(100vw-350px) !important
+    min-width: calc(100vw-350px) !important
 
-  // Full HD laptops & desktops, big tablets
-  // @media (min-width: 1920px)
+// Full HD laptops & desktops, big tablets
+@media (min-width: 1920px)
+  body
+    padding-left: 400px !important
+    max-width: calc(100vw-400px) !important
+    min-width: calc(100vw-400px) !important
 
-  // 4K screens
-  // @media (min-width: 1400px)
+// 4K screens
+// @media (min-width: 1400px)
 
 </style>
