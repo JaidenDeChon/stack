@@ -86,9 +86,9 @@ body
 
   .global-width-class
 
-    width: 85%
-    max-width: 850px
-    margin: 0 auto
+    width: 85% !important
+    max-width: 850px !important
+    margin: 0 auto !important
 
   *
 
