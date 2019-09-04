@@ -9,7 +9,7 @@
 				v-on:keyup.enter="addToTodos"
 				class="fade" id="input"
 				type="text"
-				placeholder="Enter a new task..."
+				placeholder="Enter a new task"
 			)
 
 			button(@click="addToTodos" class="shadow fade")
@@ -60,6 +60,8 @@ export default {
 
 <style scoped lang="sass">
 
+@import '../assets/css/themes.sass'
+
 .new-todo-container
 
 	// border: solid red
@@ -94,9 +96,9 @@ export default {
 			border: none
 			border-radius: 20px
 
-			background: #e8e8e8
+			background-color: $dark-1
 
-			color: #888888
+			color: $dark-text-3
 
 		input
 
@@ -105,29 +107,12 @@ export default {
 
 			&::placeholder
 
-				color: #888888
+				color: $dark-text-3
 				font-size: 15px
-
-			&:focus
-
-				box-shadow: 0 0 20px rgba(0,0,0,0.15), 0 0 20px rgba(0,0,0,0.15)
-				background: #42B983
-				color: #e8e8e8
-
-				&::placeholder
-
-					color: #e8e8e8
 
 		button
 
 			cursor: pointer
-
-			// box-shadow: 0 0 10px #1e573d
-
-			// Move to desktop
-			&:active
-				box-shadow: inset 0 0 10px #1e573d
-				color: #42B983
 
 // smartphones, portrait iPhone, portrait 480x320 phones (Android)
 // @media (min-width: 280px)
