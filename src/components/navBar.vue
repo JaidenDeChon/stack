@@ -9,13 +9,15 @@
 
 		nav
 
-			router-link(class="is-active menu-entry" to="/") Home
+			newList
+
+			router-link(class="menu-entry" to="/") Home
 
 			router-link(to="/" class="menu-entry") Cleaning
 				span(class="buttons")
 					i(class="fas fa-times shadow")
 
-			router-link(to="/" class="menu-entry") Car Maintenance
+			router-link(to="/" class="is-active menu-entry") Car Maintenance
 				span(class="buttons")
 					i(class="fas fa-times shadow")
 
@@ -28,10 +30,15 @@
 <script>
 
 	import Footer from '@/components/footer.vue';
+	import newList from '@/components/newList.vue'
 
 	export default {
 
 		name: 'Navbar',
+
+		components: {
+			newList
+		},
 
 		mounted () {
 
@@ -114,13 +121,14 @@
 
 <style lang="sass">
 
+	@import '../assets/css/themes.sass'
+
 	.nav-container
 
-		// border: solid red
 		box-sizing: border-box
 
 		// Position to left of screen
-		position: absolute
+		position: fixed
 		top: 0
 		bottom: 0
 		left: -100vw
@@ -132,14 +140,16 @@
 		height: calc(var(--vh, 1vh) * 100)
 		width: 100vw
 
-		background-color: #e8e8e8
+		background-color: $dark-2
 
 		.hamburger
 
 			position: fixed
-			top: 8px
-			left: 3.75vw
-			z-index: 9005
+			top: 23px
+			left: 7.5vw
+			z-index: 9999999999999999999999999999999
+
+			padding: 0
 
 			outline: none
 
@@ -182,12 +192,11 @@
 
 			min-height: calc(100% - 160px)
 
-			a
+			.menu-entry
 
-				background-color: #fff
-				border-radius: 20px
+				background-color: $dark-2
 
-				color: #8F8F8F
+				color: $dark-text-1
 				text-decoration: none
 				font-size: 17px
 				// font-weight: bold
@@ -195,7 +204,6 @@
 				min-height: 60px
 
 				padding: 25px
-				margin: 8px
 
 				display: flex
 				align-items: center
@@ -212,14 +220,23 @@
 					width: 30px
 					height: 30px
 
+					border-radius: 3px
+
 					display: flex
 					align-items: center
 					justify-content: center
 
+					background-color: $dark-4
+
 				&.is-active
 
-					background-color: #42B983
-					color: #e8e8e8
+					background-color: $dark-2-special-1
+					color: $green
+
+					i
+
+						background-color: $dark-2
+						color: $dark-text-1
 
 	// smartphones, portrait iPhone, portrait 480x320 phones (Android)
 	// @media (min-width: 280px)
@@ -233,17 +250,11 @@
 			min-width: 400px
 			max-width: 400px
 			overflow: hidden
-			background-color: #666
 			.menu-entry
-				background-color: #e8e8e8
-				transition: all .15s ease-in-out
 				&:hover
-					background-color: #B1D8C6
-					color: #666
+					background-color: $dark-2-special-2
 				&.is-active
 					&:hover
-						background-color: #42B983
-						color: #e8e8e8
 
 	// Landscape standard tablets, lo-res laptops and desktops
 	@media (min-width: 801px)
@@ -261,9 +272,20 @@
 		.nav-container
 			right: auto
 			left: 0 !important
-			box-shadow: 0 0 20px rgba(0,0,0,0.15), 0 0 20px rgba(0,0,0,0.15)
-			.menu-entry
+			nav
+				margin-top: 0
+				.menu-entry
+					transition: all .15s ease-in-out
+					span
+						i
+							transition: all .15s ease-in-out
 					&:hover
+						span
+							i
+								background-color: $green
+								color: #fff
+								&:hover
+									background-color: $green-light
 
 	// Full HD laptops & desktops, big tablets
 	@media (min-width: 1920px)
