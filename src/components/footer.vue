@@ -2,7 +2,7 @@
 
 	div(class="footer-container")
 
-		div(class="footer")
+		div(class="footer global-width-class")
 
 			div(class="copyright-container")
 
@@ -26,13 +26,8 @@
 
 .footer-container
 
-	position: absolute
-	bottom: 0
-	left: 0
-	right: 0
-
 	width: 100%
-	height: 80px
+	height: 40px
 
 	margin: 0
 
@@ -95,16 +90,10 @@
 // @media (min-width: 1000px)
 
 // For strange new 1440p laptops
-@media (min-width: 1440px)
-	.footer-container
-		left: 350px
-		width: calc(100% - 350px)
+// @media (min-width: 1440px)
 
 // Full HD laptops & desktops, big tablets
-@media (min-width: 1920px)
-	.footer-container
-		left: 400px
-		width: calc(100% - 400px)
+// @media (min-width: 1920px)
 
 // 4K screens
 // @media (min-width: 1400px)

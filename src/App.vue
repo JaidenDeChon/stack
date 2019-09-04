@@ -1,7 +1,7 @@
 
 <template lang=pug>
 
-  div(id="app")
+  div(id="app" class="dark")
 
     Navbar
 
@@ -44,6 +44,7 @@ export default {
 
 <style lang="sass">
 
+@import './assets/css/themes.sass'
 @import './assets/css/hamburgers.css'
 
 html, body
@@ -51,10 +52,28 @@ html, body
   margin: 0
   padding: 0
 
+html
+  overflow: hidden
+  width: 100%
+
 body
-  // height: 200vh
-  position: relative
-  padding-bottom: 80px
+
+  // For preventing URL bar from closing
+  height: 100%
+  position: fixed
+  overflow-y: scroll
+  -webkit-overflow-scrolling: touch
+  width: 100%
+
+  // For sticking footer to bottom
+  // position: relative
+  // padding-bottom: 40px 
+
+  background-color: $dark-4
+
+  &.no-scroll
+
+    overflow: hidden
 
 #app
 
@@ -101,14 +120,14 @@ body
 // For strange new 1440p laptops
 @media (min-width: 1440px)
   body
-    padding-left: 350px !important
+    padding-left: 175px !important
     max-width: calc(100vw-350px) !important
     min-width: calc(100vw-350px) !important
 
 // Full HD laptops & desktops, big tablets
 @media (min-width: 1920px)
   body
-    padding-left: 400px !important
+    padding-left: 200px !important
     max-width: calc(100vw-400px) !important
     min-width: calc(100vw-400px) !important
 
