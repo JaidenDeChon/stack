@@ -20,6 +20,7 @@
 						p {{ todo.content }}
 						i(@click="remove(index)" class="fas fa-times shadow")
 						i(@click="toggle(index)" class="fas fa-check shadow")
+						i(class="fas fa-pen shadow")
 
 		div(v-else-if="this.todos.length == 0" class="if-container with-flex")
 
@@ -67,15 +68,19 @@ export default {
 
 <style lang="sass">
 
+@import '../assets/css/themes.sass'
+
 .list-container
-	box-sizing: border-box
+
+	// border: solid red
+	box-sizing: border-box	
 
 	margin: 0
 
 	padding: 0
 
 	// 100vh - combined heights of Title(80px), newToDo(50px), and Footer(80px)
-	min-height: calc(100vh - 210px)
+	min-height: calc(100vh - 170px)
 	flex-grow: 1
 
 	.if-container
@@ -98,7 +103,7 @@ export default {
 		.no-cards-container
 
 			width: 85%
-			height: 100%
+			min-height: 100%
 
 			margin: 0 auto
 
@@ -112,7 +117,7 @@ export default {
 				width: 250px
 				height: 250px
 
-				background-color: #e8e8e8
+				background-color: $dark-3
 
 				display: flex
 				align-items: center
@@ -129,11 +134,11 @@ export default {
 
 			p
 
-				color: #666666
+				color: $dark-text-1
 
 		.hint
 
-			color: #888888
+			color: $dark-text-1
 			font-size: 13px
 			width: 100%
 			text-align: center
@@ -149,19 +154,21 @@ export default {
 
 			margin: 0 auto
 
+			min-height: 100%
+
 			padding: 0
 
 			.card
 
-				padding: 20px 80px 20px 40px
+				padding: 20px 145px 20px 40px
 				margin:  20px 0
 
-				color: #e8e8e8
+				color: $dark-text-1
 				text-align: left
 				font-size: 15px
 
-				background-color: #42B983
-				border-radius: 20px
+				background-color: $dark-2
+				border-radius: 3px
 				user-select: none
 
 				position: relative
@@ -191,20 +198,9 @@ export default {
 				&.done
 
 					color: rgba(136, 136, 136, 0.6)
-					background-color: #e8e8e8
+					background-color: $dark-3
 					font-style: italic
 					text-decoration: line-through
-
-					.fa-times, .fa-check
-
-						&:hover
-
-							background-color: #888888
-							color: #e8e8e8
-
-					&:hover
-
-						box-shadow: none !important
 
 				p
 
@@ -215,11 +211,9 @@ export default {
 					transition: all .15s ease-in-out
 					overflow: none
 
-				.fa-times, .fa-check
-
 					width: 30px
 					height: 30px
-					border-radius: 15px
+					border-radius: 3px
 
 					margin: 0
 					padding: 0
@@ -233,10 +227,11 @@ export default {
 
 					cursor: pointer
 
-					&:hover
+					background-color: $dark-4
 
-						background-color: #e8e8e8
-						color: #888888
+				.fa-pen
+
+					right: 85px
 
 				.fa-times
 
@@ -259,7 +254,27 @@ export default {
 // @media (min-width: 801px)
 
 // For laptops and desktops, and landscape big tablets
-// @media (min-width: 1000px)
+@media (min-width: 1000px)
+	.list-container
+		.cards-container
+			.card
+				&:hover
+					background-color: $dark-2-special-2
+					.fas
+						background-color: $green
+						color: #fff
+				&.done
+					&:hover
+						.fas
+							background-color: $dark-4
+							color: $dark-text-1
+							&:hover
+								background-color: $dark-2
+
+				.fas
+					&:hover
+						background-color: $green-light
+						color: #fff
 
 // For strange new 1440p laptops
 // @media (min-width: 1440px)
