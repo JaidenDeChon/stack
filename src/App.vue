@@ -121,15 +121,11 @@ body
 @media (min-width: 1440px)
   body
     padding-left: 175px !important
-    max-width: calc(100vw-350px) !important
-    min-width: calc(100vw-350px) !important
 
 // Full HD laptops & desktops, big tablets
 @media (min-width: 1920px)
   body
     padding-left: 200px !important
-    max-width: calc(100vw-400px) !important
-    min-width: calc(100vw-400px) !important
 
 // 4K screens
 // @media (min-width: 1400px)
