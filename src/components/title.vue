@@ -20,7 +20,6 @@ export default {
 
 .title-container
 
-	// border: solid blue
 	box-sizing: border-box
 
 	width: 100%
@@ -71,7 +70,11 @@ export default {
 // @media (min-width: 801px)
 
 // For laptops and desktops, and landscape big tablets
-// @media (min-width: 1000px)
+@media (min-width: 1000px)
+	.title-container
+		.title-flex
+			h1
+				position: initial
 
 // For strange new 1440p laptops
 // @media (min-width: 1440px)
